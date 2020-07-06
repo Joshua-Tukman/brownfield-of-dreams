@@ -5,14 +5,14 @@ class Admin::TutorialsController < Admin::BaseController
 
   def create
     tutorial = Tutorial.new(title: params[:tutorial][:title],
-                    description: params[:tutorial][:description],
-                    thumbnail: params[:tutorial][:thumbnail])
-    
+                            description: params[:tutorial][:description],
+                            thumbnail: params[:tutorial][:thumbnail])
+
     if tutorial.save
-      #tutorial_videos = YoutubeService.new.playlist_items_with_thumbnail(tutorial.id, tutorial)
+      # tutorial_videos = YoutubeService.new
+      # .playlist_items_with_thumbnail(tutorial.id, tutorial)
       redirect_to "/tutorials/#{tutorial.id}"
     end
-    
   end
 
   def new

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "As an admin user" do
   describe "when I visit my admin dashboard" do
-    it "I see a link 'Import YouTube Playlist' that takes me to a form to add a playlist" do 
+    it "I see a link 'Import YouTube Playlist' that takes me to a form to add a playlist" do
       admin = create(:user, role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -11,20 +11,20 @@ RSpec.describe "As an admin user" do
       click_link "Import Youtube Playlist"
 
       fill_in :playlist_id, with: "PL7hyQeCP1V6SLJOBVgh5gVnHwBFyEqF6a"
-           
+
       click_on "Import Playlist"
       tutorial = Tutorial.last
 
       expect(current_path).to eq("/admin/dashboard")
-      expect(page).to have_content("Successfully created tutorial. To view click here")
-      expect(page).to have_link("#{tutorial.title}")
+      expect(page).to have_content("Successfully created tutorial. View it here.")
+      expect(page).to have_link('View it here')
 
-      click_link "#{tutorial.title}"
-      
+      click_link 'View it here'
+
       expect(current_path).to eq("/tutorials/#{tutorial.id}")
-     
+
       expect(page).to have_css('.show-link', count: 14)
-      
+
     end
   end
   # describe "when I visit my tutorials new page" do
@@ -39,8 +39,8 @@ RSpec.describe "As an admin user" do
   #     fill_in :tutorial_thumbnail, with: "https://i.ytimg.com/vi/UT4W6jAyO_o/default.jpg"
 
   #     click_button "Save"
-  #     tutorial = Tutorial.last 
-     
+  #     tutorial = Tutorial.last
+
   #     expect(current_path).to eq("/tutorials/#{tutorial.id}")
   #   end
   # end

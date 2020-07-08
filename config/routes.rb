@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'tags/:tag', to: 'welcome#index', as: :tag
   get '/register', to: 'users#new'
-
+  get '/activate/:user_id', to: 'users#activate'
   namespace :admin do
     get "/dashboard", to: "dashboard#show"
     resources :tutorials, only: [:create, :edit, :update, :destroy, :new] do

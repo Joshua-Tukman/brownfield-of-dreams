@@ -6,5 +6,6 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :first_name, presence: true
   enum role: { default: 0, admin: 1 }
+  enum activation_status: { Inactive: 0, Active: 1 }
   has_secure_password
 end

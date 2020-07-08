@@ -9,9 +9,11 @@ class Admin::TutorialsController < Admin::BaseController
                             thumbnail: params[:tutorial][:thumbnail])
 
     if tutorial.save
-      # tutorial_videos = YoutubeService.new
-      # .playlist_items_with_thumbnail(tutorial.id, tutorial)
+      flash[:success] = "Successfully created a tutorial!"
       redirect_to "/tutorials/#{tutorial.id}"
+    else
+      flash[:error] = 'Unable to create tutorial.'
+      redirect_to "/admin/tutorials/new"
     end
   end
 

@@ -4,17 +4,16 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def create
-    begin
-      tutorial = Tutorial.new(title: params[:tutorial][:title],
-                              description: params[:tutorial][:description],
-                              thumbnail: params[:tutorial][:thumbnail])
+    tutorial = Tutorial.new(title: params[:tutorial][:title],
+                            description: params[:tutorial][:description],
+                            thumbnail: params[:tutorial][:thumbnail])
 
-      tutorial.save
+    if tutorial.save
       flash[:success] = "Successfully created a tutorial!"
       redirect_to "/tutorials/#{tutorial.id}"
-    rescue StandardError
+    else
       flash[:error] = 'Unable to create tutorial.'
-      render :new
+      redirect_to "/admin/tutorials/new"
     end
   end
 

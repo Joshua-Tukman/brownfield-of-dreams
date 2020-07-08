@@ -4,14 +4,17 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def create
-    tutorial = Tutorial.new(title: params[:tutorial][:title],
-                            description: params[:tutorial][:description],
-                            thumbnail: params[:tutorial][:thumbnail])
+    begin
+      tutorial = Tutorial.new(title: params[:tutorial][:title],
+                              description: params[:tutorial][:description],
+                              thumbnail: params[:tutorial][:thumbnail])
 
-    if tutorial.save
-      # tutorial_videos = YoutubeService.new
-      # .playlist_items_with_thumbnail(tutorial.id, tutorial)
+      tutorial.save
+      flash[:success] = "Successfully created a tutorial!"
       redirect_to "/tutorials/#{tutorial.id}"
+    rescue StandardError
+      flash[:error] = 'Unable to create tutorial.'
+      render :new
     end
   end
 

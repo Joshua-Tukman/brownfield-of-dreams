@@ -9,11 +9,11 @@ class Admin::TutorialsController < Admin::BaseController
                             thumbnail: params[:tutorial][:thumbnail])
 
     if tutorial.save
-      flash[:success] = "Successfully created a tutorial!"
+      flash[:success] = 'Successfully created a tutorial!'
       redirect_to "/tutorials/#{tutorial.id}"
     else
       flash[:error] = 'Unable to create tutorial.'
-      redirect_to "/admin/tutorials/new"
+      redirect_to '/admin/tutorials/new'
     end
   end
 

@@ -5,4 +5,8 @@ class Tutorial < ApplicationRecord
                                                   dependent: :destroy
   acts_as_taggable_on :tags, :tag_list
   accepts_nested_attributes_for :videos
+
+  def toggle_classroom
+    classroom? ? (self.classroom = false) : (self.classroom = true)
+  end
 end

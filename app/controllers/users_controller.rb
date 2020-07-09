@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def show
+    @bookmarked_collection = UserVideo.bookmarked_videos(current_user)
     return unless current_user.token
 
     @repos = SearchResults.new.repos(current_user.token)

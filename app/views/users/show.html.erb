@@ -11,6 +11,20 @@
   </ul>
   <section>
     <h1>Bookmarked Segments</h1>
+    <ol>
+    <% @bookmarked_collection.each do |tutorial_title, videos| %>
+      <section class="tutorial-<%=videos[0].tutorial_id%>">
+        <li><%= tutorial_title %></li>
+      <ul>
+        <%videos.each_with_index do |video, index|%>
+          <section class="video-<%=index%>">
+            <li><%= link_to "#{video.title}", "/tutorials/#{videos[0].tutorial_id}?video_id=#{video.id}" %></li>
+          </section>
+        <%end%>
+      </section>
+      </ul>
+    <%end%>
+    </ul>
   </section>
   <%if !current_user.token.nil?%>
     <section>

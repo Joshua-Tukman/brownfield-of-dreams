@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_023558) do
+ActiveRecord::Schema.define(version: 2020_07_09_035150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,12 +42,12 @@ ActiveRecord::Schema.define(version: 2020_07_08_023558) do
 
   create_table "tutorials", force: :cascade do |t|
     t.string "title"
-    t.text "description"
     t.string "thumbnail"
     t.string "playlist_id"
     t.boolean "classroom", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description", default: "No description"
   end
 
   create_table "user_videos", force: :cascade do |t|

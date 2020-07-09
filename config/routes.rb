@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     resources :playlists, only: [:new, :create]
     resources :videos, only: [:edit, :update, :destroy]
+    resources :tutorials_classroom, only: [:update]
 
     namespace :api do
       namespace :v1 do
